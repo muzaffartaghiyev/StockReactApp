@@ -13,8 +13,11 @@ import LoginForm from "../components/LoginForm"
 
 import { Formik } from "formik";
 import * as Yup from 'yup';
+import useAuthCall from "../hooks/useAuthCall";
 
 const Login = () => {
+  const {login} = useAuthCall()
+
   const theme = useTheme();
 
   const loginSchema = Yup.object().shape({
@@ -59,7 +62,8 @@ const Login = () => {
             validationSchema={loginSchema}
 
             onSubmit={(values)=>(
-              console.log(values)
+  
+              login(values)
             )}
             component={(props)=>(<LoginForm {...props}/>)}
           
