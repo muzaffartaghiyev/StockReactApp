@@ -61,10 +61,13 @@ const Login = () => {
 
             validationSchema={loginSchema}
 
-            onSubmit={(values)=>(
-  
+            onSubmit={(values,actions)=>{
+              actions.resetForm()
+              actions.setSubmitting(false)
               login(values)
-            )}
+            }
+              
+            }
             component={(props)=>(<LoginForm {...props}/>)}
           
           >
