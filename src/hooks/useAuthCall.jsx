@@ -9,12 +9,13 @@ const useAuthCall = () =>{
     const navigate = useNavigate()
     const token = useSelector((state)=>state.auth.token)
 
+    const BASE_URL = import.meta.env.VITE_BASE_URL
 
     const register=async(userInfo)=>{
         dispatch(fetchStart())
 
         try{
-            const {data} = await axios.post("https://10147.fullstack.clarusway.com/users",userInfo)
+            const {data} = await axios.post(`${BASE_URL}/users`,userInfo)
             dispatch(registerSuccess(data))
 
             navigate('/stock')
@@ -27,7 +28,7 @@ const useAuthCall = () =>{
         dispatch(fetchStart())
 
         try{
-            const {data} = await axios.post("https://10147.fullstack.clarusway.com/auth/login",userInfo)
+            const {data} = await axios.post(`${BASE_URL}/auth/login`,userInfo)
 
             dispatch(loginSuccess(userInfo))
             navigate("/stock")
@@ -40,7 +41,7 @@ const useAuthCall = () =>{
     const logout=async()=>{
         dispatch(fetchStart())
         try{
-            const {data} = await axios.get("https://10147.fullstack.clarusway.com/auth/logout",{
+            const {data} = await axios.get(`${BASE_URL}/auth/logout`,{
                 headers:{
                     Authorization:`Token ${token}`
                 }
@@ -52,8 +53,6 @@ const useAuthCall = () =>{
             dispatch(fetchFail())
         }
     }
-
-    
 
     return {register,login,logout}
 
