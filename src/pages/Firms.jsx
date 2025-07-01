@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import useStockCall from '../hooks/useStockCall'
 
 
-import {Container,Typography,Button, Grid} from "@mui/material";
+import {Typography,Button, Grid} from "@mui/material";
 import { useSelector } from 'react-redux';
 import FirmCard from '../components/Cards/FirmCard';
+import FirmModal from '../components/Modals/FirmModal';
 
 
 const Firms = () => {
@@ -14,6 +15,18 @@ const Firms = () => {
   useEffect(()=>{
       getData("firms")
   },[])
+
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  const [initialState,setInitialState] = useState(
+    {name:"",
+      phone:"",
+      address:"",
+      image:""
+    }
+  )
     
   
   return (
@@ -21,7 +34,7 @@ const Firms = () => {
       <Typography variant="h4" component="h1" color='secondary.second'>
         Firms
       </Typography>
-      <Button variant='contained' sx={{mt:3}}>
+      <Button variant='contained' sx={{mt:3}} onClick={handleOpen}>
           New Firm
       </Button>
 
@@ -33,6 +46,7 @@ const Firms = () => {
         ))}
       </Grid>
     
+    <FirmModal open={open} handleClose={handleClose} initialState={initialState}/>
     </div>
   )
 }
