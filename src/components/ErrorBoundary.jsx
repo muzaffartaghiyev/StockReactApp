@@ -19,7 +19,7 @@ class ErrorBoundary extends React.Component {
         if (this.state.error) {
             return (
                 <div>
-                    Bir hata oluştu:
+                    An Error Happened:
                     <pre>{this.state.error.stack}</pre>
                 </div>
             );
