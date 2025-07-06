@@ -12,8 +12,6 @@ const Firms = () => {
   const {getData} = useStockCall()
   const {firms} = useSelector((state)=>state.stock)
 
-
-
   useEffect(()=>{
       getData("firms")
   },[])
@@ -33,10 +31,10 @@ const Firms = () => {
   
   return (
     <div>
-      <Typography variant="h4" component="h1" color='red'>
+      <Typography align='center' variant="h4" component="h1" color='red' sx={{mb:"1rem"}}>
         Firms
       </Typography>
-      <Button variant='contained' sx={{mt:3}} onClick={handleOpen}>
+      <Button variant='contained' sx={{mb:"1rem"}} onClick={handleOpen}>
           New Firm
       </Button>
 

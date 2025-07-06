@@ -54,9 +54,17 @@ const MuiListItems = () => {
       <Toolbar />
       <List>
         {links.map((link, index) => (
-          <ListItem key={index} disablePadding>
-            <ListItemButton onClick={()=>navigate(link.url)}>
-              <ListItemIcon>
+          <ListItem key={index} disablePadding sx={{
+            transition: "color 0.3s ease",
+                "&:hover": {
+            color: "red",
+            "& .MuiListItemIcon-root, & .MuiListItemText-primary": {
+            color: "red",
+            },
+          },
+        }}>
+            <ListItemButton onClick={()=>navigate(link.url)} >
+              <ListItemIcon >
                 {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
                 {link.icon}
 

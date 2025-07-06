@@ -32,10 +32,10 @@ const Brands = () => {
 
   return (
     <div>
-      <Typography variant="h4" component="h1" color='red'>
+      <Typography align="center" variant="h4" component="h1" color='red' sx={{mb:"1rem"}}>
         Brands
       </Typography>
-      <Button variant='contained' sx={{mt:3}} onClick={handleOpen}>
+      <Button variant='contained' onClick={handleOpen} sx={{mb:"1rem"}}>
           New Brand
       </Button>
 

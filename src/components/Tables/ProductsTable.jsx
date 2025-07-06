@@ -18,37 +18,44 @@ export default function ProductsTable() {
 
     const {products} = useSelector((state)=>state.stock)
     const {deleteStockData} = useStockCall()
+    
 
     const columns = [
         { field: '_id', headerName: '#', width: 250 },
         {
             field: 'categoryId',
             headerName: 'Category',
-            width: 110,
+            width: 150,
             editable: false,
             valueGetter: (value) => `${value.name}`,
+            headerAlign:"center",
+            align:"center",
         },
         {
             field: 'brandId',
             headerName: 'Brand',
-            width: 110,
+            width: 150,
             editable: false,
             valueGetter: (value) => `${value.name}`,
+            headerAlign:"center",
+            align:"center",
         },
         {
             field: 'name',
             headerName: 'Name',
             width: 250,
             editable: false,
-            headerAlign:"left",
-            align:"left",
+            headerAlign:"center",
+            align:"center",
         },
         {
             field: 'quantity',
             headerName: 'Quantity',
             type: 'number',
-            width: 110,
+            width: 150,
             editable: false,
+            headerAlign:"center",
+            align:"center",
         },
         {
             field: 'actions',
@@ -83,7 +90,15 @@ export default function ProductsTable() {
         }}
         pageSizeOptions={[5,10,15]}
         checkboxSelection
-        disableRowSelectionOnClick
+
+        sx={{
+          '& .MuiDataGrid-cell:focus': {
+            outline: 'none',
+          },
+          '& .MuiDataGrid-cell:focus-within': {
+            outline: 'none',
+          },
+        }}
         
       />
     </Box>

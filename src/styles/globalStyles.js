@@ -1,11 +1,9 @@
 export const btnStyle = {
     color: "secondary.main",
     borderRadius: "1rem",
-    transition:"all 0.6s ease-in-out",
+    transition:"all 0.2s ease-in-out",
     "&:hover": {
-      backgroundColor: "secondary.main",
-      color: "white",
-      padding:"0.5rem"
+      color: "red",
     },
     
   }
