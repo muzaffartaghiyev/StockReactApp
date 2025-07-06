@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch} from 'react-redux'
-import { fetchFail, fetchStart, stockDataSuccess } from '../features/stockSlice'
+import { fetchFail, fetchStart, ProCatBrandSuccess, SalesProBrandSuccess,PurProBrandFirmSuccess,stockDataSuccess } from '../features/stockSlice'
 
 import useAxios from './useAxios'
 
@@ -58,7 +58,74 @@ const useStockCall = () => {
             dispatch(fetchFail())
         }
     }
-  return {getData,createStockData,updateStockData,deleteStockData}
+
+ 
+    const getProCatBrand = async()=>{
+
+        dispatch(fetchStart())
+        try{
+           const [products,brands,categories] = await Promise.all([
+                axiosWithToken.get("products"),
+                axiosWithToken.get("brands"),
+                axiosWithToken.get("categories"),
+            ])
+
+            dispatch(ProCatBrandSuccess([
+                products?.data?.data,
+                brands?.data?.data,
+                categories?.data?.data]))
+        }
+        catch(error){
+            dispatch(fetchFail())
+        }
+    }
+
+    const getSalesProBrand = async()=>{
+
+        dispatch(fetchStart())
+        try{
+           const [sales,products,brands] = await Promise.all([
+               axiosWithToken.get("sales"),
+                axiosWithToken.get("products"),
+                axiosWithToken.get("brands"),
+            ])
+
+            dispatch(SalesProBrandSuccess([
+                sales?.data?.data,
+                products?.data?.data,
+                brands?.data?.data,
+                ]))
+        }
+        catch(error){
+            dispatch(fetchFail())
+        }
+    }
+
+    const getPurProBrandFirm = async()=>{
+
+        dispatch(fetchStart())
+        try{
+           const [purchases,products,brands,firms] = await Promise.all([
+                axiosWithToken.get("purchases"),
+                axiosWithToken.get("products"),
+                axiosWithToken.get("brands"),
+                axiosWithToken.get("firms"),
+            ])
+
+            dispatch(PurProBrandFirmSuccess([
+                purchases?.data?.data,
+                products?.data?.data,
+                brands?.data?.data,
+                firms?.data?.data,
+                ]))
+        }
+        catch(error){
+            dispatch(fetchFail())
+        }
+    }
+
+
+  return {getData,createStockData,updateStockData,deleteStockData,getProCatBrand,getSalesProBrand,getPurProBrandFirm}
 }
 
 export default useStockCall

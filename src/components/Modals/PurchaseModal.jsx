@@ -102,6 +102,7 @@ export default function PurchaseModal({open,handleClose,initialState}) {
                     <MenuItem onClick={() => navigate("/stock/brands")}>
                       Add New Brand
                     </MenuItem>
+                    <hr />
                     {brands.map((brand) => (
                       <MenuItem  key={brand._id}  value={brand._id}>{brand.name}</MenuItem>
                     ))}
@@ -121,6 +122,7 @@ export default function PurchaseModal({open,handleClose,initialState}) {
                     <MenuItem onClick={() => navigate("/stock/products")}>
                       Add New Product
                     </MenuItem>
+                    <hr />
                     {products.map((product) => (
                       <MenuItem  key={product._id}  value={product._id}>{product.name}</MenuItem>
                     ))}

@@ -8,15 +8,12 @@ import PurchaseModal from '../components/Modals/PurchaseModal';
 
 const Purchases = () => {
 
-  const {getData} = useStockCall()
+  const {getPurProBrandFirm} = useStockCall()
 
   const { loading, error } = useSelector((state) => state.stock);
   
     useEffect(()=>{
-        getData("purchases")        
-        getData("firms")
-        getData("brands")
-        getData("products")
+        getPurProBrandFirm()
     },[])
 
 

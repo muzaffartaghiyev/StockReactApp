@@ -9,6 +9,7 @@ import { useState } from 'react';
 import useStockCall from '../../hooks/useStockCall';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 
 const style = {
@@ -27,10 +28,11 @@ const style = {
 
 export default function ProductModal({open,handleClose,initialState}) {
 
+  const navigate = useNavigate()
+
   const {createStockData} = useStockCall()
 
   const {brands, categories} = useSelector((state)=>state.stock)
-
 
   const [info,setInfo] = useState(initialState)
 
@@ -67,6 +69,7 @@ export default function ProductModal({open,handleClose,initialState}) {
                     label="Category"
                     onChange={handleChange}
                     >
+                    
                     {categories.map((cate) => (
                       <MenuItem  key={cate._id}  value={cate._id}>{cate.name}</MenuItem>
                     ))}
@@ -82,6 +85,10 @@ export default function ProductModal({open,handleClose,initialState}) {
                     label="Brand"
                     onChange={handleChange}
                     >
+                    <MenuItem onClick={() => navigate("/stock/brands")}>
+                      Add New Brand
+                    </MenuItem>
+                    <hr />
                     {brands.map((brand) => (
                       <MenuItem  key={brand._id}  value={brand._id}>{brand.name}</MenuItem>
                     ))}

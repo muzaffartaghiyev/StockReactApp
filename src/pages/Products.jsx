@@ -10,15 +10,17 @@ import { useSelector } from 'react-redux';
 
 const Products = () => {
 
-  const {getData} = useStockCall()
+  const {getProCatBrand} = useStockCall()
 
   const { loading, error } = useSelector((state) => state.stock);
 
   
   useEffect(()=>{
-      getData("products")
-      getData("brands")
-      getData("categories")
+      // getData("products")
+      // getData("brands")
+      // getData("categories")
+
+      getProCatBrand()
   },[])
 
 

@@ -9,14 +9,12 @@ import SaleModal from '../components/Modals/SaleModal';
 
 const Sales = () => {
 
-  const {getData} = useStockCall()
+  const {getSalesProBrand} = useStockCall()
 
   const { loading, error } = useSelector((state) => state.stock);
   
   useEffect(()=>{
-        getData("sales")
-        getData("brands")
-        getData("products")
+        getSalesProBrand()
     },[])
 
   const [open, setOpen] = useState(false);
