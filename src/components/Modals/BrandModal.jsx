@@ -16,14 +16,12 @@ const style = {
   p: 4,
 };
 
-export default function FirmModal({open,handleClose,initialState}) {
+export default function BrandModal({open,handleClose,initialState}) {
 
   const {createStockData,updateStockData} = useStockCall()
 
   const [info,setInfo] = useState(
       {name:"",
-        phone:"",
-        address:"",
         image:""
       }
     )
@@ -40,9 +38,9 @@ export default function FirmModal({open,handleClose,initialState}) {
     e.preventDefault()
 
     if(info._id){
-      updateStockData("firms",info)
+      updateStockData("brands",info)
     }else{
-      createStockData("firms",info)
+      createStockData("brands",info)
         
     }    
     handleClose() 
@@ -59,32 +57,12 @@ export default function FirmModal({open,handleClose,initialState}) {
         <Box sx={style} component="form" onSubmit={handleSubmit}>
             <Box sx={{display:"flex",flexDirection:"column" ,gap:"10px"}}>
                 <TextField
-                label="Firm Name"
+                label="Brand Name"
                 name="name"
                 type="text"
                 variant='outlined'
                 onChange={handleChange}
                 value={info.name}
-                required
-                fullWidth
-            />
-            <TextField
-                label="Firm Address"
-                name="address"
-                type="text"
-                variant='outlined'
-                onChange={handleChange}
-                value={info.address}
-                required
-                fullWidth
-            />
-            <TextField
-                label="Firm Phone"
-                name="phone"
-                type="text"
-                variant='outlined'
-                onChange={handleChange}
-                value={info.phone}
                 required
                 fullWidth
             />
@@ -95,11 +73,10 @@ export default function FirmModal({open,handleClose,initialState}) {
                 variant='outlined'
                 onChange={handleChange}
                 value={info.image}
-                required
                 fullWidth
             />
             <Button variant='contained' type='submit'>
-            {info._id ? "Edit Firm":"Save Firm"}
+            {info._id ? "Edit Brand":"Save Brand"}
             </Button>
 
             </Box>

@@ -33,14 +33,14 @@ const Firms = () => {
   
   return (
     <div>
-      <Typography variant="h4" component="h1" color='secondary.second'>
+      <Typography variant="h4" component="h1" color='red'>
         Firms
       </Typography>
       <Button variant='contained' sx={{mt:3}} onClick={handleOpen}>
           New Firm
       </Button>
 
-      <Grid container>
+      <Grid container sx={{mt:"1rem"}}>
         {firms.map((firm)=>(
           <Grid item xs={12} md={6} lg={4} xl={3} >
             <FirmCard key={firm._id} {...firm} handleOpen={handleOpen} setInitialState={setInitialState}/>

@@ -17,7 +17,7 @@ const Products = () => {
 
   return (
     <div>
-    <Typography variant="h4" component="h1" color='secondary.secondary'>
+    <Typography variant="h4" component="h1" color='red'>
         Products
       </Typography>
       <Button variant='contained' sx={{mt:3}}>

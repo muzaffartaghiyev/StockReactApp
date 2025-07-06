@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import {CardMedia,Container} from '@mui/material';
@@ -14,9 +13,10 @@ import {btnStyle} from "../../styles/globalStyles"
 
 import useStockCall from '../../hooks/useStockCall'
 
-export default function FirmCard({_id,name,phone,image,address,handleOpen,setInitialState}) {
 
-  const {deleteStockData} = useStockCall()
+const BrandCard = ({_id,name,image,handleOpen,setInitialState}) => {
+
+    const {deleteStockData} = useStockCall()
 
   return (
     <Container>
@@ -24,34 +24,34 @@ export default function FirmCard({_id,name,phone,image,address,handleOpen,setIni
       
         <CardHeader      
           title={name}
-          subheader={address}
+          sx={{textAlign:"center",mb:"1rem"}}
         />
       
         <CardMedia
           component="img"
           height="194"
           image={image}
-          alt="firm"
+          alt="brand"
           sx={{height:140 , objectFit:"contain"}}
         />
       
         <CardContent sx={{ width:"340",  textAlign:"center"}}>
-          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-          {phone}
-          </Typography>
+          
         </CardContent>
       
         <CardActions disableSpacing sx={{display:"flex", justifyContent:"center"}}>
           <IconButton aria-label="add to favorites">
-          <DeleteOutlineIcon sx={btnStyle} onClick={()=>deleteStockData("firms",_id)}/>
+          <DeleteOutlineIcon sx={btnStyle} onClick={()=>deleteStockData("brands",_id)}/>
           </IconButton>
           <IconButton aria-label="share">
-          <EditIcon sx={btnStyle} onClick={()=>{handleOpen(),setInitialState({_id,name,address,phone,image})}} />
+          <EditIcon sx={btnStyle} onClick={()=>{handleOpen(),setInitialState({_id,name,image})}} />
           </IconButton>
         
         </CardActions> 
 
       </Card>
     </Container>
-  );
+  )
 }
+
+export default BrandCard
