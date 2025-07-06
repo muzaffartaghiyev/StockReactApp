@@ -21,13 +21,15 @@ const stockSlice = createSlice({
       state.loading = false;
       state.error = true;
         },
-        firmSuccess:(state,{payload})=>{
-            state.firms = payload.data
+        stockDataSuccess:(state,{payload})=>{
+            state[payload.url] = payload.data.data.reverse()
+            state.loading = false
+            state.error = false
         },
     }
 })
 
 
-export const {fetchStart,fetchFail,firmSuccess} = stockSlice.actions
+export const {fetchStart,fetchFail,stockDataSuccess} = stockSlice.actions
 
 export default stockSlice.reducer

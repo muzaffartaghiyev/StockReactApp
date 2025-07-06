@@ -1,5 +1,7 @@
-import * as React from 'react';
 import {Button,Modal,Box, TextField} from '@mui/material';
+import { useState } from 'react';
+import useStockCall from '../../hooks/useStockCall';
+import { useEffect } from 'react';
 
 
 const style = {
@@ -15,7 +17,36 @@ const style = {
 };
 
 export default function FirmModal({open,handleClose,initialState}) {
-  
+
+  const {createStockData,updateStockData} = useStockCall()
+
+  const [info,setInfo] = useState(
+      {name:"",
+        phone:"",
+        address:"",
+        image:""
+      }
+    )
+
+  useEffect(()=>{
+    setInfo(initialState)
+  },[initialState])
+
+  const handleChange = (e)=>{
+    setInfo({...info,[e.target.name]:e.target.value})
+  }
+
+  const handleSubmit = (e)=>{
+    e.preventDefault()
+
+    if(info._id){
+      updateStockData("/firms",info)
+    }else{
+      createStockData("/firms",info)
+        
+    }    
+    handleClose() 
+  }
 
   return (
     <div>
@@ -25,49 +56,52 @@ export default function FirmModal({open,handleClose,initialState}) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        <Box sx={style} component="form" onSubmit={handleSubmit}>
             <Box sx={{display:"flex",flexDirection:"column" ,gap:"10px"}}>
                 <TextField
                 label="Firm Name"
                 name="name"
                 type="text"
                 variant='outlined'
-                // onChange={handleChange}
-                // value={info.name}
+                onChange={handleChange}
+                value={info.name}
                 required
                 fullWidth
             />
             <TextField
-                label="Firm Name"
-                name="name"
+                label="Firm Address"
+                name="address"
                 type="text"
                 variant='outlined'
-                // onChange={handleChange}
-                // value={info.name}
+                onChange={handleChange}
+                value={info.address}
                 required
                 fullWidth
             />
             <TextField
-                label="Firm Name"
-                name="name"
+                label="Firm Phone"
+                name="phone"
                 type="text"
                 variant='outlined'
-                // onChange={handleChange}
-                // value={info.name}
+                onChange={handleChange}
+                value={info.phone}
                 required
                 fullWidth
             />
             <TextField
-                label="Firm Name"
-                name="name"
+                label="Firm Image"
+                name="image"
                 type="text"
                 variant='outlined'
-                // onChange={handleChange}
-                // value={info.name}
+                onChange={handleChange}
+                value={info.image}
                 required
                 fullWidth
             />
-            <Button variant='contained' type='submit'>Save Firm</Button>
+            <Button variant='contained' type='submit'>
+            {info._id ? "Edit Firm":"Save Firm"}
+            </Button>
+
             </Box>
         
         </Box>

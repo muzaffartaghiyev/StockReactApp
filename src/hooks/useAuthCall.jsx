@@ -4,18 +4,19 @@ import {fetchStart, fetchFail, registerSuccess, logoutSuccess, loginSuccess} fro
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
 
+import useAxios from './useAxios'
+
 const useAuthCall = () =>{
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const token = useSelector((state)=>state.auth.token)
 
-    const BASE_URL = import.meta.env.VITE_BASE_URL
+    const {axiosWithToken} = useAxios()
 
     const register=async(userInfo)=>{
         dispatch(fetchStart())
 
         try{
-            const {data} = await axios.post(`${BASE_URL}/users`,userInfo)
+            const {data} = await axiosWithToken.post(`/users`,userInfo)
             dispatch(registerSuccess(data))
 
             navigate('/stock')
@@ -28,7 +29,7 @@ const useAuthCall = () =>{
         dispatch(fetchStart())
 
         try{
-            const {data} = await axios.post(`${BASE_URL}/auth/login`,userInfo)
+            const {data} = await axiosWithToken.post(`/auth/login`,userInfo)
 
             dispatch(loginSuccess(data))
             navigate("/stock")
@@ -41,12 +42,8 @@ const useAuthCall = () =>{
     const logout=async()=>{
         dispatch(fetchStart())
         try{
-            const {data} = await axios.get(`${BASE_URL}/auth/logout`,{
-                headers:{
-                    Authorization:`Token ${token}`
-                }
-            })
-            dispatch(logoutSuccess())
+            const {data} = await axiosWithToken.get(`/auth/logout`)
+            dispatch(logoutSuccess(data))
             navigate("/")
 
         }catch(error){
