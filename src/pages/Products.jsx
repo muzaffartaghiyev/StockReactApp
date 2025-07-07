@@ -16,10 +16,6 @@ const Products = () => {
 
   
   useEffect(()=>{
-      // getData("products")
-      // getData("brands")
-      // getData("categories")
-
       getProCatBrand()
   },[])
 

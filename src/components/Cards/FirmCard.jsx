@@ -42,11 +42,11 @@ export default function FirmCard({_id,name,phone,image,address,handleOpen,setIni
         </CardContent>
       
         <CardActions disableSpacing sx={{display:"flex", justifyContent:"center"}}>
-          <IconButton aria-label="add to favorites">
-          <DeleteOutlineIcon sx={btnStyle} onClick={()=>deleteStockData("firms",_id)}/>
+          <IconButton aria-label="add to favorites" onClick={()=>deleteStockData("firms",_id)}>
+          <DeleteOutlineIcon sx={btnStyle} />
           </IconButton>
-          <IconButton aria-label="share">
-          <EditIcon sx={btnStyle} onClick={()=>{handleOpen(),setInitialState({_id,name,address,phone,image})}} />
+          <IconButton aria-label="share" onClick={()=>{handleOpen(),setInitialState({_id,name,address,phone,image})}}>
+          <EditIcon sx={btnStyle}  />
           </IconButton>
         
         </CardActions> 

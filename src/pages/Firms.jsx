@@ -39,9 +39,9 @@ const Firms = () => {
       </Button>
 
       <Grid container sx={{mt:"1rem"}}>
-        {firms.map((firm)=>(
-          <Grid item xs={12} md={6} lg={4} xl={3} >
-            <FirmCard key={firm._id} {...firm} handleOpen={handleOpen} setInitialState={setInitialState}/>
+        {firms.map((firm,index)=>(
+          <Grid item xs={12} md={6} lg={4} xl={3} key={index}>
+            <FirmCard  {...firm} handleOpen={handleOpen} setInitialState={setInitialState}/>
           </Grid>
         ))}
       </Grid>

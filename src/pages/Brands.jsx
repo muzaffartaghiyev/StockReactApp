@@ -41,8 +41,8 @@ const Brands = () => {
 
       <Grid container sx={{mt:"1rem"}}>
         {brands.map((brand)=>(
-          <Grid item xs={12} md={6} lg={4} xl={3} >
-            <BrandCard key={brand._id} {...brand} handleOpen={handleOpen} setInitialState={setInitialState}/>
+          <Grid item xs={12} md={6} lg={4} xl={3} key={brand._id}>
+            <BrandCard  {...brand} handleOpen={handleOpen} setInitialState={setInitialState}/>
           </Grid>
         ))}
       </Grid>
